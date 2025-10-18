@@ -1,1 +1,86 @@
-txt
+Rem Attribute VBA_ModuleType=VBADocumentModule
+Option VBASupport 1
+Sub check()
+
+Dim sFund As String
+sFund = Worksheets(1).Range("D2")
+
+Dim iRow As Integer
+iRow = 11
+
+Dim iRow2 As Integer
+iRow2 = 11
+
+Do While Worksheets(1).Range("A" & iRow2).Value = sFund
+
+    Dim sPath1 As String
+    sPath1 = Worksheets(1).Range("B" & iRow2)
+    
+    Dim sPath2 As String
+    sPath2 = Worksheets(1).Range("C" & iRow2)
+    
+    Dim sPath3 As String
+    sPath3 = Worksheets(1).Range("D" & iRow2)
+    
+    Dim sPath4 As String
+    sPath4 = Worksheets(1).Range("E" & iRow2)
+    
+    Dim sPath5 As String
+    sPath5 = Worksheets(1).Range("G" & iRow2)
+
+        If Worksheets(1).Range("F" & iRow2) = "Saturday" Then
+        Worksheets(1).Range("H" & iRow2) = "N/A WEEKEND"
+        
+        ElseIf Worksheets(1).Range("F" & iRow2) = "Sunday" Then
+        Worksheets(1).Range("H" & iRow2) = "N/A WEEKEND"
+        
+        Else: Workbooks.Open(sPath1 & "\" & sPath2 & "\0" & sPath3 & "." & sPath4 & "\" & sPath5).ActiveSheet.Range("B3"). _
+        Copy Workbooks("MACRO").Worksheets(1).Range("H" & iRow2)
+        Workbooks("C1").Close
+        
+        End If
+    
+    iRow2 = iRow2 + 1
+    
+Loop
+
+With Worksheets(1)
+
+Do While .Range("A" & iRow).Value = sFund
+  
+  If .Range("H" & iRow).Value = .Range("A3").Value Then
+    .Range("I" & iRow).Interior.ColorIndex = 4
+    .Range("I" & iRow).Value = "OK"
+  
+  ElseIf .Range("H" & iRow).Value = .Range("A4").Value Then
+    .Range("I" & iRow).Interior.ColorIndex = 4
+    .Range("I" & iRow).Value = "OK"
+  
+  ElseIf .Range("H" & iRow).Value = .Range("A5").Value Then
+    .Range("I" & iRow).Interior.ColorIndex = 4
+    .Range("I" & iRow).Value = "OK"
+  
+  ElseIf .Range("H" & iRow).Value = .Range("A6").Value Then
+    .Range("I" & iRow).Interior.ColorIndex = 4
+    .Range("I" & iRow).Value = "OK"
+  
+  ElseIf .Range("H" & iRow).Value = .Range("A7").Value Then
+    .Range("I" & iRow).Interior.ColorIndex = 4
+    .Range("I" & iRow).Value = "OK"
+  
+  ElseIf .Range("H" & iRow).Value = "N/A WEEKEND" Then
+    .Range("I" & iRow).Interior.ColorIndex = 45
+    .Range("I" & iRow).Value = "N/A WEEKEND"
+   
+  Else: .Range("I" & iRow).Value = "ERROR"
+        .Range("I" & iRow).Interior.ColorIndex = 3
+        
+  End If
+  
+iRow = iRow + 1
+
+Loop
+
+End With
+
+End Sub
