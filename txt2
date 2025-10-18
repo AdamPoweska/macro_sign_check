@@ -1,0 +1,27 @@
+Rem Attribute VBA_ModuleType=VBAModule
+Option VBASupport 1
+Sub clear()
+
+Dim sFund As String
+sFund = Worksheets(1).Range("D2")
+
+Dim iRow As Integer
+iRow = 11
+
+With Worksheets(1)
+
+Do While .Range("A" & iRow).Value = sFund
+  
+    .Range("H" & iRow).Interior.ColorIndex = 2
+    .Range("H" & iRow).Value = ""
+  
+    .Range("I" & iRow).Interior.ColorIndex = 2
+    .Range("I" & iRow).Value = ""
+  
+iRow = iRow + 1
+
+Loop
+
+End With
+
+End Sub
